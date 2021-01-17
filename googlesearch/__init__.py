@@ -303,6 +303,10 @@ def search(query, tld='com', lang='en', tbs='0', safe='off', num=10, start=0,
 
         # Request the Google Search results page.
         html = get_page(url, user_agent, verify_ssl)
+	
+	# Modify to not return expanded results
+	if "str" in html.decode("utf-8"): # e.g. replace "str" with "q=smart+city+site"
+            return
 
         # Parse the response and get every anchored URL.
         if is_bs4:
